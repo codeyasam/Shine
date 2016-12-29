@@ -27,6 +27,9 @@ gem 'devise'
 #use bower to install bootstrap
 gem 'bower-rails'
 
+#use faker for dummy data
+gem 'faker'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
