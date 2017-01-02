@@ -15,5 +15,9 @@ class CustomersController < ApplicationController
 			@customers =  Customer.all.limit(10)
 		end
 
+		respond_to do |format| 
+			format.html {}
+			format.json { render json: @customers }
+		end
 	end
 end
