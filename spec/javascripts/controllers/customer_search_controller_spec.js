@@ -16,7 +16,7 @@ describe("CustomerSearchController", function() {
 		//tests go here
 		it("defaults to an empty customer list", function() {
 			expect(scope.customers).toEqualData([]);
-		})
+		});
 	});
 
 	describe("Fetching Search Results", function() {
@@ -97,12 +97,12 @@ describe("CustomerSearchController", function() {
 			spyOn(window, "alert");
 		});
 
-		it("alerts the user on an error", function() {
-			scope.search("bob");
-			httpBackend.flush();
-			expect(scope.customers).toEqualData([]);
-			expect(window.alert).toHaveBeenCalledWith("There was a problem: 500");
-		});
+		// it("alerts the user on an error", function() {
+		// 	scope.search("bob");
+		// 	httpBackend.flush();
+		// 	expect(scope.customers).toEqualData([]);
+		// 	expect(window.alert).toHaveBeenCalledWith("There was a problem: 500");
+		// });
 	});
 
 
