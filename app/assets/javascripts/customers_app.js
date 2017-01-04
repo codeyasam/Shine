@@ -20,10 +20,10 @@ app.controller("CustomerSearchController", [
   			      { "params": { "keywords": searchTerm, "page": page } }
   	 	).then(function(response) {
   	 		$scope.customers = response.data;
+        //alert("There was a problem: 500");
   	 	}, function(response) {
   	 		alert("There was a problem: " + response.status);
-  	 	   }
-  	 	);
+      });
   	}
 
   	$scope.previousPage = function() {
