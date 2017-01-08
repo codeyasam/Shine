@@ -75,11 +75,11 @@ State.create!(name: "Wyoming"           , code: "WY")
 # Helper method to create a billing address for a customer
 def create_billing_address(customer_id, num_states)
 	billing_state = State.all[rand(num_states)]
-	billing_address = Addres.create!(
+	billing_address = Address.create!(
 		street: Faker::Address.street_address,
 		city: Faker::Address.city,
 		state: billing_state,
-		zipcode: Faker::Addres.zip
+		zipcode: Faker::Address.zip
 	)
 
 	CustomersBillingAddress.create!(customer_id: customer_id, address: billing_address)
