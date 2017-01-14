@@ -27,6 +27,7 @@ class CustomersController < ApplicationController
 		# 	format.json { render json: customer }
 		# end
 		customer_detail = CustomerDetail.find(params[:id])
+		sleep 5
 		respond_to do |format|
 			format.json { render json: customer_detail }
 		end

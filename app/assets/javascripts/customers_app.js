@@ -3,6 +3,7 @@ var app = angular.module(
   [
     'ngRoute',
     'ngResource',
+    'ngMessages',
     'templates'
   ]
 );
@@ -66,17 +67,49 @@ app.controller("CustomerSearchController", [
 ]);
 
 app.controller("CustomerDetailController", [
-          "$scope","$http","$routeParams",
-  function($scope,  $http,  $routeParams) {
-    var customerId = $routeParams.id;
-    $scope.customer = {};
+          "$scope","$http","$routeParams", "$resource",
+  function($scope,  $http,  $routeParams,   $resource) {
+    $scope.customerId = $routeParams.id;
+    var Customer = $resource('/customers/:customerId.json')
 
-    $http.get("/customers/" + customerId + ".json").
-      then(function(response) {
-        $scope.customer = response.data;
-      }, function(response) {
-        alert("There was a problem: " + response.status);
-      });
+    $scope.customer = Customer.get({ "customerId": $scope.customerId })
+    // $scope.customer = {};
 
+    // $http.get("/customers/" + customerId + ".json").
+    //   then(function(response) {
+    //     $scope.customer = response.data;
+    //   }, function(response) {
+    //     alert("There was a problem: " + response.status);
+    //   });
+
+    $scope.save = function() {
+      //alert($scope.form.$valid);
+      if ($scope.form.email.$valid) {
+        alert("Email is valid");
+      } else if ($scope.form.email.$error.required) {
+        alert("Email is required");
+      } else if ($scope.form.email.$error.email) {
+        alert("Email must look like an email");
+      }
+
+      if ($scope.form.$valid) {
+        alert("Save!");
+      }
+    };
+  }
+]);
+
+
+app.controller("CustomerCreditCardController", [
+          "$scope", "$resource", 
+  function($scope,   $resource) {
+    var CreditCardInfo = $resource('/fake_billing.json');
+    $scope.creditCard = CreditCardInfo.get({ "cardholder_id": 42 });
+  
+    $scope.setCardHolderId = function(cardholderId) {
+      $scope.creditCard = CreditCardInfo.get(
+        { "cardholder_id": cardholderId }
+      )
+    };
   }
 ]);
